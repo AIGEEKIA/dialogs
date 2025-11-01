@@ -39,3 +39,6 @@ Thumbs.db
 
 # Streamlit
 .streamlit/
+watchdog.md
+streamlit_guide.md
+ollama_chatbot_guide.md
