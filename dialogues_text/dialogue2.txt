@@ -1,0 +1,4 @@
+Marie: Salut ! Prête pour la réunion ?
+Pierre: Oui, j'ai préparé les slides. Et toi ?
+Marie: J'ai les notes. On devrait être bons.
+Pierre: Parfait, allons-y !

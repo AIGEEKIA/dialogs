@@ -1,0 +1,4 @@
+Chef: Bonjour équipe, commençons la réunion.
+Développeur: D'accord, quels sont les points à l'ordre du jour ?
+Chef: Le projet Streamlit et les intégrations.
+Développeur: J'ai avancé sur l'interface.

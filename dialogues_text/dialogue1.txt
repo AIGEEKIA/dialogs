@@ -1,0 +1,4 @@
+Alice: Bonjour, comment ça va ?
+Bob: Ça va bien, merci ! Et toi ?
+Alice: Très bien aussi. Qu'est-ce que tu fais aujourd'hui ?
+Bob: Je travaille sur un projet Python. Et toi ?

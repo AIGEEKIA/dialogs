@@ -1,0 +1,9 @@
+[system_prompts]
+neutre = "Vous êtes un assistant utile et neutre."
+creatif = "Vous êtes un assistant créatif et imaginatif."
+strict = "Vous êtes un assistant strict et factuel."
+
+[user_prompts]
+default = "Répondez de manière claire et concise."
+detaille = "Répondez de manière détaillée et complète."
+amusant = "Répondez de manière amusante et légère."

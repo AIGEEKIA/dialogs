@@ -1,0 +1,4 @@
+Enseignant: Bonjour classe, aujourd'hui on parle de Python.
+Élève: J'ai une question sur les fonctions.
+Enseignant: Bien sûr, vas-y.
+Élève: Comment définir une fonction ?

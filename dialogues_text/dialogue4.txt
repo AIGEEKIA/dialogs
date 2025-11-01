@@ -1,0 +1,4 @@
+Ami1: Hé, tu as vu le dernier film ?
+Ami2: Oui, il était génial ! L'histoire était captivante.
+Ami1: J'ai adoré les effets spéciaux.
+Ami2: Moi aussi, on devrait aller en voir un autre.
