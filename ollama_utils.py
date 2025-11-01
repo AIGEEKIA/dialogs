@@ -5,6 +5,30 @@ import toml
 import random
 import time
 import uuid
+import re
+
+def clean_response(response_text, character_name):
+    """Nettoie la réponse pour enlever le nom du personnage et les guillemets."""
+    # Enlever le nom du personnage au début
+    patterns_to_remove = [
+        f"^{character_name}\\s*:\\s*",  # "Enseignant: "
+        f"^{character_name}\\s+",       # "Enseignant "
+        f"^\\*\\*{character_name}\\*\\*\\s*:\\s*",  # "**Enseignant**: "
+    ]
+    
+    cleaned = response_text.strip()
+    
+    for pattern in patterns_to_remove:
+        cleaned = re.sub(pattern, "", cleaned, flags=re.IGNORECASE)
+    
+    # Enlever les guillemets en début et fin
+    cleaned = cleaned.strip('"\'""''')
+    
+    # Enlever les guillemets qui entourent tout le texte
+    if (cleaned.startswith('"') and cleaned.endswith('"')) or (cleaned.startswith("'") and cleaned.endswith("'")):
+        cleaned = cleaned[1:-1]
+    
+    return cleaned.strip()
 
 def get_available_models():
     """Retourne la liste des modèles Ollama disponibles."""
@@ -57,11 +81,11 @@ def generate_dialogue_response(model_name, character, dialogue, system_prompt=""
 
     # Ajout d'un identifiant unique pour invalider le cache
     unique_id = f"\nUnique ID: {uuid.uuid4()}-{time.time()}"
-    prompt = f"Dialogue récent:\n{context_text}\n\n{random_instruction}\nTu incarnes le personnage {character}. {user_prompt}\nContinue le dialogue en générant la réponse suivante de {character}, en restant cohérent avec le contexte et le style du personnage.{unique_id}"
+    prompt = f"Dialogue récent:\n{context_text}\n\n{random_instruction}\nRépondez en tant que {character} de façon naturelle et cohérente. {user_prompt}\n\nIMPORTANT: Répondez UNIQUEMENT avec les paroles directes de {character}, sans écrire son nom, sans guillemets, sans préfixe. Juste le contenu de ce qu'il dit.{unique_id}"
 
     messages = []
     if system_prompt:
-        messages.append({'role': 'system', 'content': system_prompt})
+        messages.append({'role': 'system', 'content': f"{system_prompt}\n\nRègle stricte: Vous êtes {character}. Ne jamais inclure le nom du personnage dans votre réponse. Répondez directement avec les paroles."})
     messages.append({'role': 'user', 'content': prompt})
 
     # Options avec graine aléatoire et désactivation explicite du cache
@@ -80,7 +104,9 @@ def generate_dialogue_response(model_name, character, dialogue, system_prompt=""
             messages=messages,
             options=final_options
         )
-        return response.message.content, random_instruction
+        # Post-traitement pour nettoyer la réponse
+        cleaned_response = clean_response(response.message.content, character)
+        return cleaned_response, random_instruction
     except Exception as e:
         return f"Erreur: Impossible de contacter Ollama. Veuillez vérifier que le serveur Ollama est en cours d'exécution. Détails: {e}", random_instruction
 
@@ -104,11 +130,11 @@ def generate_multiple_responses(model_name, character, dialogue, system_prompt="
 
         # Ajout d'un identifiant unique pour invalider le cache
         unique_id = f"\nUnique ID: {uuid.uuid4()}-{time.time()}"
-        prompt = f"Dialogue récent:\n{context_text}\n\n{random_instruction}\nTu incarnes le personnage {character}. {user_prompt}\nContinue le dialogue en générant la réponse suivante de {character}, en restant cohérent avec le contexte et le style du personnage.{unique_id}"
+        prompt = f"Dialogue récent:\n{context_text}\n\n{random_instruction}\nRépondez en tant que {character} de façon naturelle et cohérente. {user_prompt}\n\nIMPORTANT: Répondez UNIQUEMENT avec les paroles directes de {character}, sans écrire son nom, sans guillemets, sans préfixe. Juste le contenu de ce qu'il dit.{unique_id}"
 
         messages = []
         if system_prompt:
-            messages.append({'role': 'system', 'content': system_prompt})
+            messages.append({'role': 'system', 'content': f"{system_prompt}\n\nRègle stricte: Vous êtes {character}. Ne jamais inclure le nom du personnage dans votre réponse. Répondez directement avec les paroles."})
         messages.append({'role': 'user', 'content': prompt})
 
         # Options avec graine aléatoire et désactivation explicite du cache
@@ -123,7 +149,9 @@ def generate_multiple_responses(model_name, character, dialogue, system_prompt="
                 messages=messages,
                 options=final_options
             )
-            responses.append(response.message.content)
+            # Post-traitement pour nettoyer la réponse
+            cleaned_response = clean_response(response.message.content, character)
+            responses.append(cleaned_response)
         except Exception as e:
             responses.append(f"Erreur: Impossible de contacter Ollama. Veuillez vérifier que le serveur Ollama est en cours d'exécution. Détails: {e}")
 
