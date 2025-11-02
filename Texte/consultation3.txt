@@ -1,0 +1,9 @@
+Pharmacien: Bonjour Madame, que puis-je pour vous ?
+Cliente: Bonjour, j'ai une ordonnance pour des antibiotiques.
+Pharmacien: Très bien, montrez-moi l'ordonnance s'il vous plaît.
+Cliente: Voilà, c'est pour une angine.
+Pharmacien: Je vois. Avez-vous des allergies médicamenteuses ?
+Cliente: Non, pas que je sache.
+Pharmacien: Parfait. Prenez-en un toutes les 8 heures pendant 7 jours.
+Cliente: D'accord, et y a-t-il des effets secondaires à surveiller ?
+Pharmacien: Oui, des nausées ou des diarrhées possibles. Si symptômes graves, consultez votre médecin.

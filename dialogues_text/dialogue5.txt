@@ -1,4 +1,49 @@
-Enseignant: Bonjour classe, aujourd'hui on parle de Python.
-Élève: J'ai une question sur les fonctions.
-Enseignant: Bien sûr, vas-y.
-Élève: Comment définir une fonction ?
+
+Enseignant: Bonjour classe, aujourd'hui nous allons approfondir Python.
+Élève: Super, j'aime bien ce langage !
+Enseignant: Peux-tu me rappeler ce qu'est une variable ?
+Élève: Oui, c'est un espace pour stocker une valeur.
+Enseignant: Exactement. Et comment déclare-t-on une variable en Python ?
+Élève: On écrit le nom, puis le signe égal, puis la valeur.
+Enseignant: Parfait. Donne-moi un exemple.
+Élève: Par exemple : x = 5
+Enseignant: Très bien. Maintenant, parlons des types de données.
+Élève: Il y a les entiers, les chaînes, les listes...
+Enseignant: Oui, peux-tu me donner un exemple de liste ?
+Élève: Oui, ma_liste = [1, 2, 3]
+Enseignant: Excellent. Comment accéder au deuxième élément ?
+Élève: On écrit ma_liste[1]
+Enseignant: Bravo. Passons aux fonctions. Comment en créer une ?
+Élève: On utilise def, le nom, les parenthèses et les deux points.
+Enseignant: Peux-tu écrire une fonction qui affiche "Bonjour" ?
+Élève: Oui :
+def saluer():
+	print("Bonjour")
+Enseignant: Très bien. Comment l'appeler ?
+Élève: On écrit saluer()
+Enseignant: Parfait. Maintenant, comment passer un argument ?
+Élève: On ajoute un paramètre dans les parenthèses.
+Enseignant: Peux-tu écrire une fonction qui affiche un nom ?
+Élève: Oui :
+def afficher_nom(nom):
+	print(nom)
+Enseignant: Très bien. Comment afficher "Alice" ?
+Élève: On écrit afficher_nom("Alice")
+Enseignant: Excellent. Parlons des boucles. Comment faire une boucle for ?
+Élève: On écrit for i in range(5): puis le bloc indenté.
+Enseignant: Peux-tu écrire une boucle qui affiche les nombres de 0 à 4 ?
+Élève: Oui :
+for i in range(5):
+	print(i)
+Enseignant: Parfait. Et une boucle while ?
+Élève: On écrit while condition: puis le bloc indenté.
+Enseignant: Peux-tu écrire une boucle while qui affiche les nombres de 0 à 2 ?
+Élève: Oui :
+i = 0
+while i < 3:
+	print(i)
+	i += 1
+Enseignant: Bravo ! Tu as bien compris les bases de Python.
+Élève: Merci beaucoup, c'était très clair !
+Enseignant: On continuera avec les modules la prochaine fois.
+Élève: J'ai hâte ! vilain

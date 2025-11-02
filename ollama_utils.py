@@ -34,7 +34,13 @@ def get_available_models():
     """Retourne la liste des modèles Ollama disponibles."""
     try:
         models = get_models()
-        return [model.model for model in models.models]
+        # Gérer le cas où models est un objet avec attribut models ou un dictionnaire
+        if hasattr(models, 'models'):
+            return [model.model for model in models.models]
+        elif isinstance(models, dict) and 'models' in models:
+            return [model['model'] if isinstance(model, dict) else model.model for model in models['models']]
+        else:
+            return ["llama2-uncensored:latest"]  # Modèle par défaut
     except Exception as e:
         print(f"Erreur de connexion à Ollama: {e}")
         return ["llama2-uncensored:latest"]  # Modèle par défaut si Ollama n'est pas disponible
@@ -59,7 +65,7 @@ def get_chat_response(model_name, user_message, system_prompt="", user_prompt=""
             messages=messages,
             options=options or {}
         )
-        return response.message.content
+        return response['message']['content']
     except Exception as e:
         return f"Erreur: Impossible de contacter Ollama. Veuillez vérifier que le serveur Ollama est en cours d'exécution. Détails: {e}"
 
@@ -105,7 +111,7 @@ def generate_dialogue_response(model_name, character, dialogue, system_prompt=""
             options=final_options
         )
         # Post-traitement pour nettoyer la réponse
-        cleaned_response = clean_response(response.message.content, character)
+        cleaned_response = clean_response(response['message']['content'], character)
         return cleaned_response, random_instruction
     except Exception as e:
         return f"Erreur: Impossible de contacter Ollama. Veuillez vérifier que le serveur Ollama est en cours d'exécution. Détails: {e}", random_instruction
@@ -150,7 +156,7 @@ def generate_multiple_responses(model_name, character, dialogue, system_prompt="
                 options=final_options
             )
             # Post-traitement pour nettoyer la réponse
-            cleaned_response = clean_response(response.message.content, character)
+            cleaned_response = clean_response(response['message']['content'], character)
             responses.append(cleaned_response)
         except Exception as e:
             responses.append(f"Erreur: Impossible de contacter Ollama. Veuillez vérifier que le serveur Ollama est en cours d'exécution. Détails: {e}")
@@ -163,7 +169,7 @@ def list_log_files(folder_path):
     if not folder.exists() or not folder.is_dir():
         return []
     txt_files = [f for f in folder.iterdir() if f.is_file() and f.suffix == '.txt']
-    txt_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
+    txt_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)  # Plus récent en premier
     return [str(f) for f in txt_files]
 
 def parse_dialogue(file_path):

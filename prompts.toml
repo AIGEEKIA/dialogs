@@ -6,7 +6,7 @@ dialogue_technique = "Vous êtes un expert technique spécialisé. Vous génére
 dialogue_creatif = "Vous êtes un artiste de l'écriture créative. Vous générez des dialogues originaux, poétiques et imaginatifs. Vos personnages ont une voix unique, des métaphores inattendues et une créativité débordante. Une réponse courte peut être très impactante."
 
 [user_prompts]
-character_naturel = "Répondez en tant que {character} de façon naturelle et cohérente avec le contexte du dialogue. Gardez votre réponse concise (2-3 phrases maximum)."
-character_expressif = "Répondez en tant que {character} de façon expressive et engageante. Restez bref et percutant (1-2 phrases)."
-character_precis = "Répondez en tant que {character} en étant très précis et technique. Soyez concis et direct."
-character_creatif = "Répondez en tant que {character} avec créativité et originalité. Une réponse courte mais impactante."
+character_naturel = "Répondez en tant que {character} de façon naturelle et cohérente avec le contexte du dialogue. Gardez votre réponse courte : une phrase ou deux maximum."
+character_expressif = "Répondez en tant que {character} de façon expressive et engageante. Gardez votre réponse courte : une phrase ou deux maximum."
+character_precis = "Répondez en tant que {character} en étant très précis et technique. Gardez votre réponse courte : une phrase ou deux maximum."
+character_creatif = "Répondez en tant que {character} avec créativité et originalité. Gardez votre réponse courte : une phrase ou deux maximum."
