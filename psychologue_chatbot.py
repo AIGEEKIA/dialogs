@@ -6,11 +6,11 @@ from typing import List, Dict, Tuple
 import json
 from datetime import datetime
 
-# Import Ollama utilities
+# Import Ollama utilities (version simplifiée)
 try:
-    from ollama_utils import get_available_models, get_chat_response
+    from ollama_utils_simple import get_available_models, get_chat_response
 except ImportError:
-    st.error("Erreur: Impossible d'importer ollama_utils. Assurez-vous que le fichier existe.")
+    st.error("Erreur: Impossible d'importer ollama_utils_simple. Assurez-vous que le fichier existe.")
     st.stop()
 
 class PsychologueChatbot:
