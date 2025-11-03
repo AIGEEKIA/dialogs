@@ -2,6 +2,38 @@
 
 Un assistant IA spécialisé en psychologie utilisant RAG (Retrieval-Augmented Generation) avec des données locales.
 
+## ⚠️ AVERTISSEMENTS IMPORTANTS
+
+### 🚨 **CE PROJET EST UN EXEMPLE ÉDUCATIF UNIQUEMENT**
+
+**Ce chatbot est un exemple technique de RAG (Retrieval-Augmented Generation) appliqué à la psychologie.** Il n'est en aucun cas destiné à fournir des conseils médicaux, psychologiques ou thérapeutiques.
+
+### 🩺 **LIMITATIONS CRITIQUES**
+- ❌ **PAS un diagnostic médical** : Ne peut pas diagnostiquer de troubles mentaux
+- ❌ **PAS un traitement** : Ne peut pas remplacer une thérapie professionnelle
+- ❌ **PAS un avis médical** : Les réponses sont génériques et informatives uniquement
+- ❌ **PAS une urgence** : En cas de détresse psychologique, contactez immédiatement un professionnel
+
+### 🎯 **CE QUE C'EST VRAIMENT**
+- ✅ **Exemple de RAG** : Démonstration technique d'intelligence artificielle locale
+- ✅ **Outil éducatif** : Présentation de concepts psychologiques de base
+- ✅ **Support temporaire** : Écoute empathique non-professionnelle
+- ✅ **Orientation** : Guide vers les ressources d'aide appropriées
+
+### 🔄 **ADAPTABLE À D'AUTRES DOMAINES**
+Ce code peut être facilement adapté à d'autres domaines :
+- 📚 **Éducation** : Chatbot pédagogique avec base de connaissances scolaire
+- 💼 **Ressources humaines** : Assistant RH avec politiques d'entreprise
+- 🏥 **Santé générale** : Information sur la prévention (mais JAMAIS de diagnostic)
+- 📖 **Documentation** : Assistant recherche dans des bases documentaires
+
+### 🚨 **PRÉCAUTIONS ABSOLUES**
+1. **Ne prenez PAS ce chatbot comme substitut à une aide thérapeutique ou médicale**
+2. **En cas de détresse psychologique** : Contactez un professionnel de santé
+3. **Pour tout problème médical** : Consultez un médecin qualifié
+4. **Les réponses sont génériques** : Elles ne tiennent pas compte de votre situation personnelle
+5. **L'IA ne remplace pas l'humain** : L'empathie et l'expertise humaine sont irremplaçables
+
 ## 🎯 Objectif
 
 Créer un chatbot psychologue qui :
