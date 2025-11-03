@@ -161,18 +161,6 @@ def main():
     st.title("🧠 Chatbot Psychologue")
     st.markdown("*Un assistant IA pour l'écoute et le soutien psychologique*")
 
-    # AVERTISSEMENT CRITIQUE
-    st.error("🚨 **AVERTISSEMENT CRITIQUE** 🚨")
-    st.markdown("""
-    **CE CHATBOT EST UN EXEMPLE TECHNIQUE DE RAG UNIQUEMENT**
-
-    - ❌ **PAS de diagnostic médical** : Ne peut pas diagnostiquer de troubles mentaux
-    - ❌ **PAS de traitement** : Ne remplace pas une thérapie professionnelle
-    - ❌ **PAS d'urgence** : En cas de détresse, contactez immédiatement un professionnel
-
-    ✅ **C'est un exemple éducatif** qui peut être adapté à d'autres domaines (éducation, RH, documentation)
-    """)
-
     # Initialiser le chatbot
     if 'chatbot' not in st.session_state:
         st.session_state.chatbot = PsychologueChatbot()
@@ -257,24 +245,11 @@ def main():
         # Scroll automatique vers le bas
         st.rerun()
 
-    # Footer avec disclaimer renforcé
+    # Footer avec disclaimer
     st.markdown("---")
-    st.error("🚨 **RAPPEL CRITIQUE** 🚨")
-    st.markdown("""
-    **CE CHATBOT EST UN EXEMPLE TECHNIQUE DE RAG - PAS UN OUTIL MÉDICAL**
-
-    - 🩺 **Jamais de diagnostic** : L'IA ne peut pas remplacer un professionnel de santé
-    - 💊 **Jamais de traitement** : Les réponses sont informatives uniquement
-    - 🚑 **En cas d'urgence** : Contactez immédiatement les services appropriés
-
-    **Ressources d'aide professionnelles :**
-    - 🇫🇷 **SAMU** : 15 (urgences médicales)
-    - 🇫🇷 **SOS Médecins** : 3624
-    - 🇫🇷 **SOS Amitié** : 09 72 39 40 50 (écoute 24h/24)
-    - 🇫🇷 **Fil Santé Jeunes** : 0 800 235 236 (3-25 ans)
-    - 🌐 **Votre médecin traitant** ou **psychologue**
-
-    *Ce projet est un exemple éducatif qui peut être adapté à d'autres domaines.*
+    st.caption("""
+    ⚠️ **Disclaimer important** : Ce chatbot est un outil d'information générale et ne remplace pas une consultation avec un professionnel de santé qualifié.
+    En cas de détresse psychologique importante, contactez un psychologue ou un service d'urgence.
     """)
 
 if __name__ == "__main__":
