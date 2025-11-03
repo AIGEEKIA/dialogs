@@ -1,0 +1,221 @@
+# Architecture du Chatbot Psychologue RAG
+
+Ce fichier détaille l'architecture complète du chatbot psychologue avec RAG (Retrieval-Augmented Generation).
+
+## 📁 Structure générale
+
+```
+chatbot-RAG/
+├── psychologue_chatbot.py       # Application Streamlit principale
+├── ollama_utils_simple.py       # Utilitaires Ollama simplifiés
+├── psychologie_data/
+│   └── connaissances_base.md    # Base de connaissances psychologiques
+├── start_psychologue.bat        # Script de démarrage Windows
+├── requirements.txt             # Dépendances Python
+├── README.md                    # Documentation complète
+└── .gitignore                   # Fichiers à ignorer par Git
+```
+
+## 🔧 Détail des composants
+
+### 1. psychologue_chatbot.py - Application principale
+
+#### Classe PsychologueChatbot
+```python
+class PsychologueChatbot:
+    def __init__(self, data_dir: str = "psychologie_data"):
+        # Initialisation du chatbot
+        # - data_dir: répertoire contenant les documents de connaissances
+        # - knowledge_base: dictionnaire {titre: contenu} des documents chargés
+```
+
+##### Méthodes principales :
+
+###### load_knowledge_base()
+- **Rôle** : Charge tous les documents Markdown du répertoire psychologie_data/
+- **Retour** : Dictionnaire avec les titres et contenus des documents
+- **Gestion d'erreurs** : Ignore les fichiers illisibles avec avertissement
+
+###### search_knowledge(query: str, max_results: int = 3)
+- **Rôle** : Recherche dans la base de connaissances avec scoring
+- **Algorithme** :
+  1. Tokenization simple de la requête (mots-clés)
+  2. Recherche dans les titres (score x2) et contenus
+  3. Tri par score décroissant
+  4. Limitation du nombre de résultats
+- **Retour** : Liste de tuples (titre, extrait, score)
+
+###### extract_relevant_excerpt(content, query_words, context_chars=200)
+- **Rôle** : Extrait un passage pertinent autour des mots-clés trouvés
+- **Logique** : Trouve la première occurrence et extrait un contexte de 200 caractères
+
+###### generate_response(user_message, model_name, conversation_history)
+- **Rôle** : Génère une réponse en combinant RAG + LLM
+- **Étapes** :
+  1. Recherche dans la base de connaissances
+  2. Construction du contexte avec les documents pertinents
+  3. Création du prompt système pour le psychologue
+  4. Appel à Ollama via get_chat_response()
+  5. Ajout à l'historique de conversation
+- **Retour** : Réponse générée par l'IA
+
+#### Fonction main() - Interface Streamlit
+
+##### Initialisation
+- Configuration de la page Streamlit
+- Initialisation du chatbot et de l'historique
+- Variables de session pour la persistance
+
+##### Interface utilisateur
+
+###### Bannière d'avertissement
+- Message d'erreur rouge en haut de page
+- Rappel que c'est un exemple technique uniquement
+- Limitations claires (pas de diagnostic, pas de traitement)
+
+###### Sidebar de configuration
+- Sélection du modèle Ollama
+- Affichage du nombre de documents chargés
+- Bouton de rechargement de la base
+- Bouton d'effacement de l'historique
+
+###### Zone de chat principale
+- Affichage de l'historique des messages
+- Input utilisateur avec st.chat_input()
+- Génération et affichage des réponses
+- Scroll automatique vers le bas
+
+###### Footer avec ressources d'aide
+- Rappel des limitations critiques
+- Liste des services d'urgence (SAMU, SOS Amitié, etc.)
+- Mention que c'est un exemple éducatif
+
+### 2. ollama_utils_simple.py - Utilitaires Ollama
+
+#### get_available_models()
+- **Rôle** : Récupère la liste des modèles Ollama installés
+- **Gestion des formats** : Supporte différents formats de réponse d'Ollama
+- **Fallback** : Retourne "llama2-uncensored:latest" par défaut
+- **Gestion d'erreurs** : Capture les exceptions de connexion
+
+#### get_chat_response(model_name, user_message, system_prompt, user_prompt, options)
+- **Rôle** : Interface unifiée pour les appels à Ollama
+- **Construction des messages** :
+  - Message système (si fourni)
+  - Message utilisateur (combinaison user_prompt + user_message)
+- **Options** : Paramètres du modèle (temperature, top_p, etc.)
+- **Retour** : Réponse du modèle sous forme de string
+- **Gestion d'erreurs** : Message d'erreur si Ollama indisponible
+
+### 3. psychologie_data/connaissances_base.md - Base de connaissances
+
+#### Structure du contenu
+- **Format** : Markdown avec titres hiérarchiques
+- **Organisation** :
+  - Concepts fondamentaux (anxiété, dépression, stress)
+  - Techniques thérapeutiques (TCC, relaxation, méditation)
+  - Gestion des émotions (intelligence émotionnelle)
+  - Santé mentale (burnout, réseaux sociaux)
+  - Psychologie positive (flow, gratitude, résilience)
+
+#### Format des entrées
+- **Titres** : ## Titre du concept
+- **Contenu** : Description détaillée avec symptômes, causes, conseils
+- **Listes** : Utilisation de puces pour les symptômes et conseils
+
+### 4. start_psychologue.bat - Script de démarrage
+
+#### Fonctionnalités
+- **Vérification environnement** : Crée .venv si inexistant
+- **Activation** : Active l'environnement virtuel
+- **Installation** : pip install -r requirements.txt
+- **Lancement** : streamlit run psychologue_chatbot.py --server.port 8501
+- **Mode headless** : --server.headless true pour éviter les popups
+
+### 5. requirements.txt - Dépendances
+
+#### Dépendances minimales
+```
+streamlit      # Framework web pour l'interface
+ollama         # Client Python pour Ollama
+toml           # Parsing des fichiers de configuration (optionnel)
+```
+
+## 🔄 Flux de fonctionnement
+
+### 1. Initialisation
+1. Chargement des documents Markdown
+2. Indexation du contenu (titre → contenu)
+3. Configuration de l'interface Streamlit
+
+### 2. Traitement d'une requête utilisateur
+1. **Recherche RAG** :
+   - Tokenization de la requête
+   - Recherche dans titres et contenus
+   - Scoring et tri des résultats
+   - Extraction d'extraits pertinents
+
+2. **Construction du contexte** :
+   - Formatage des documents trouvés
+   - Création du prompt système psychologue
+   - Ajout de l'historique de conversation
+
+3. **Génération de réponse** :
+   - Appel à Ollama avec contexte enrichi
+   - Post-traitement de la réponse
+   - Mise à jour de l'historique
+
+4. **Affichage** :
+   - Réponse dans l'interface chat
+   - Scroll automatique
+   - Persistance en session
+
+## 🛡️ Sécurité et éthique
+
+### Limitations techniques
+- **Recherche simple** : Basée sur mots-clés, pas de sémantique avancée
+- **Pas de vectorisation** : Pas d'embeddings, juste recherche textuelle
+- **Contexte limité** : Fenêtre de 200 caractères autour des mots-clés
+- **Pas de mémoire long terme** : Historique limité à la session
+
+### Avertissements intégrés
+- **Bannière d'avertissement** : Rappel des limitations dès l'ouverture
+- **Footer éducatif** : Ressources d'aide et rappel éthique
+- **README détaillé** : Documentation complète des limitations
+
+## 🚀 Évolutions possibles
+
+### Améliorations techniques
+- **Vectorisation** : Intégration d'embeddings (sentence-transformers)
+- **Base de données** : Stockage persistant (SQLite, PostgreSQL)
+- **Recherche avancée** : Filtrage par catégories, dates
+- **Multi-modèles** : Support de plusieurs LLM simultanément
+
+### Fonctionnalités utilisateur
+- **Export de conversations** : Sauvegarde en Markdown/PDF
+- **Personnalisation** : Thèmes, langues, préférences
+- **Statistiques** : Analyse des interactions fréquentes
+- **Mode hors ligne** : Cache des réponses communes
+
+### Extension du domaine
+- **Multi-domaines** : Architecture modulaire pour différents sujets
+- **Base collaborative** : Contribution communautaire aux connaissances
+- **Validation experte** : Révision par professionnels du domaine
+
+## 📊 Métriques et monitoring
+
+### Métriques actuelles
+- **Nombre de documents** : Comptage simple
+- **Temps de réponse** : Mesure du temps de génération
+- **Taux d'erreur** : Exceptions capturées
+- **Utilisation des modèles** : Logs des appels Ollama
+
+### Monitoring possible
+- **Logs détaillés** : Traçabilité des recherches et réponses
+- **Analytics utilisateur** : Fréquence d'utilisation (anonyme)
+- **Performance** : Temps de recherche, taux de réussite
+- **Feedback** : Système de notation des réponses
+
+---
+
+*Ce fichier .tree détaille l'architecture complète du système RAG simple implémenté dans ce projet éducatif.*
