@@ -42,6 +42,46 @@ Créer un chatbot psychologue qui :
 - Fournit un soutien empathique et informatif
 - Oriente vers des professionnels quand nécessaire
 
+## ⚠️ IMPORTANT : CONTENU GÉNÉRÉ PAR IA
+
+### 🤖 Origine du contenu
+**TOUS les textes de ce projet ont été générés par intelligence artificielle.** Cela inclut :
+- La base de connaissances psychologiques (`psychologie_data/connaissances_base.md`)
+- Les exemples de dialogues
+- La documentation et les explications
+- Le code et ses commentaires
+
+### ❌ Sources NON fiables
+- **PAS des sources médicales validées** : Contenu créé par IA, non revu par experts
+- **PAS des connaissances expertes** : Génération automatique sans validation scientifique
+- **PAS des conseils professionnels** : Réponses algorithmiques sans expertise humaine
+- **PAS des informations médicales** : Contenu synthétique sans base factuelle vérifiée
+
+### 🎯 C'est JUSTE un exemple technique
+Ce projet est **uniquement un exemple pédagogique** pour démontrer :
+- Le fonctionnement basique d'un système RAG (Retrieval-Augmented Generation)
+- L'intégration d'une base de connaissances locale avec un LLM
+- Les principes de recherche et génération de réponses
+- L'architecture d'un chatbot simple avec Streamlit
+
+**Il ne s'agit PAS d'un outil utilisable en production ou pour des conseils réels.**
+
+### 🔧 Aspects techniques démontrés
+- **Recherche simple** : Recherche par mots-clés basique (pas de vectorisation avancée)
+- **Génération basique** : Prompts simples sans optimisation complexe
+- **Interface minimale** : Streamlit de base sans fonctionnalités avancées
+- **Architecture simple** : Code éducatif, pas optimisé pour la production
+
+### 📚 Pour aller plus loin
+Si vous voulez créer un vrai système RAG professionnel :
+- Utilisez des sources médicales validées (DSM-5, ouvrages spécialisés)
+- Faites valider le contenu par des experts
+- Implémentez une vraie vectorisation (embeddings)
+- Ajoutez des mécanismes de sécurité et de validation
+- Testez extensivement avec des cas réels
+
+---
+
 ## 🏗️ Architecture
 
 ### RAG (Retrieval-Augmented Generation)
