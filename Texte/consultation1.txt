@@ -1,9 +1,0 @@
-Médecin: Bonjour Madame, comment allez-vous aujourd'hui ?
-Patiente: Bonjour Docteur, je me sens fatiguée en ce moment.
-Médecin: Depuis quand ressentez-vous cette fatigue ?
-Patiente: Depuis environ deux semaines, et j'ai aussi des maux de tête.
-Médecin: Avez-vous noté d'autres symptômes ?
-Patiente: Oui, j'ai des nausées le matin et je dors mal.
-Médecin: Je vois. Avez-vous fait un test de grossesse récemment ?
-Patiente: Non, mais je pense que c'est possible.
-Médecin: Très bien, nous allons faire les examens nécessaires.

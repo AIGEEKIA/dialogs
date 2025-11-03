@@ -1,9 +1,0 @@
-Infirmière: Bonjour Monsieur, je suis l'infirmière de garde.
-Patient: Bonjour, j'ai mal au ventre depuis ce matin.
-Infirmière: Pouvez-vous décrire votre douleur sur une échelle de 1 à 10 ?
-Patient: Je dirais 7/10, c'est une douleur sourde et continue.
-Infirmière: Avez-vous vomi ou eu des nausées ?
-Patient: Oui, j'ai vomi deux fois ce matin.
-Infirmière: Prenez-vous des médicaments régulièrement ?
-Patient: Oui, je prends des anti-inflammatoires pour mon arthrose.
-Infirmière: Je vais prévenir le médecin. Reposez-vous en attendant.
